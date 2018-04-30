@@ -25,3 +25,22 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+ext {
+    // sdk and tools
+    minSdkVersion = 19
+    targetSdkVersion = 27
+    compileSdkVersion = 27
+    buildToolsVersion = '27.0.3'
+
+    // dependencies versions
+    supportLibraryVersion = '27.1.1'
+    archLibraryVersion = '1.0.0'
+    archLifecycleVersion = '1.1.0'
+    rxJavaVersion = '2.1.5'
+    rxAndroidVersion = '2.0.1'
+    jUnitVersion = '4.12'
+    espressoVersion = '2.2.2'
+    daggerVersion = '2.11'
+}
