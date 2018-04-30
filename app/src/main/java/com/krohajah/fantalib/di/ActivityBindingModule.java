@@ -1,7 +1,7 @@
 package com.krohajah.fantalib.di;
 
-import com.krohajah.fantalib.ui.main.MainActivity;
-import com.krohajah.fantalib.ui.main.MainModule;
+import com.krohajah.fantalib.ui.activity.main.MainActivity;
+import com.krohajah.fantalib.ui.activity.main.MainModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

@@ -1,11 +1,11 @@
-package com.krohajah.fantalib.ui.main;
+package com.krohajah.fantalib.ui.activity.main;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.krohajah.fantalib.R;
+import com.krohajah.fantalib.ui.activity.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
