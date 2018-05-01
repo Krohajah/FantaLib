@@ -21,7 +21,7 @@ public abstract class BasePresenter<V extends MvpView> implements Presenter<V> {
         this.view = null;
     }
 
-    public void initialize() {
+    private void initialize() {
         if (!initialized) {
             initialized = true;
             onInitialize();
