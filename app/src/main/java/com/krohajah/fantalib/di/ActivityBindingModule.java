@@ -1,7 +1,7 @@
 package com.krohajah.fantalib.di;
 
-import com.krohajah.fantalib.ui.activity.main.MainActivity;
-import com.krohajah.fantalib.ui.activity.main.MainModule;
+import com.krohajah.fantalib.ui.activity.books.BooksActivity;
+import com.krohajah.fantalib.ui.activity.books.BooksModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -12,6 +12,6 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class ActivityBindingModule {
     @ActivityScoped
-    @ContributesAndroidInjector(modules = MainModule.class)
-    abstract MainActivity mainActivity();
+    @ContributesAndroidInjector(modules = BooksModule.class)
+    abstract BooksActivity mainActivity();
 }
