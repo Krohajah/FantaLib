@@ -29,37 +29,35 @@ android {
 dependencies {
 
     // Local jars
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-
+    depsLocalJars()
+    // Utils
+    implementation project(':utils')
+    //Logger
+    implementation project(':logger')
+    //Api
+    implementation project(':api')
+    // Android annotations
+    depsAndroidAnnotations()
+    // Dagger dependencies
+    depsDagger()
+    // RxJava
+    depsRxJava()
+    //Lombok
+    depsLombok()
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     // Android support
     implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:design:$rootProject.supportLibraryVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-
     // Android architecture
-
     //      Room
     implementation "android.arch.persistence.room:runtime:$rootProject.archLibraryVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.archLibraryVersion"
     implementation "android.arch.persistence.room:rxjava2:$rootProject.archLibraryVersion"
-
-    // Dagger dependencies
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-    compileOnly 'org.glassfish:javax.annotation:10.0-b28'
-    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
-    implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
-
-    //RxJava & RxAndroid
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
-
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

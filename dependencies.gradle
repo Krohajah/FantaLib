@@ -1,0 +1,50 @@
+def dependencyGroup(Closure closure) {
+    closure.delegate = dependencies
+    return closure
+}
+
+ext {
+    // Dagger
+    depsDagger = dependencyGroup {
+        annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+        compileOnly 'org.glassfish:javax.annotation:10.0-b28'
+        implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+        implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
+        implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
+        annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
+    }
+
+    // RxJava
+    depsRxJava = dependencyGroup {
+        implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
+        implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
+    }
+
+    // Android annotations
+    depsAndroidAnnotations = dependencyGroup {
+        implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    }
+
+    // Local jars
+    depsLocalJars = dependencyGroup {
+        implementation fileTree(include: ['*.jar'], dir: 'libs')
+    }
+
+    // Tests
+    depsTests = dependencyGroup {
+        // JUnit
+        testImplementation "junit:junit:$rootProject.jUnitVersion"
+        // Espresso
+        androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion", {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+        // Test runner
+        androidTestImplementation "com.android.support.test:runner:1.0.1"
+    }
+
+    //Lombok
+    depsLombok = dependencyGroup{
+        compileOnly 'org.projectlombok:lombok:1.16.20'
+        annotationProcessor 'org.projectlombok:lombok:1.16.20'
+    }
+}
