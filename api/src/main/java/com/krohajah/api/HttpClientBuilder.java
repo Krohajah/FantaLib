@@ -7,6 +7,8 @@ import com.krohajah.utils.android.DeviceInfo;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import okhttp3.OkHttpClient;
 
 /**
@@ -18,11 +20,29 @@ class HttpClientBuilder {
      * Таймаут на подключение/чтение/запись (в секундах)
      */
     private static final long TIMEOUT = 15;
+    /**
+     * Информация о приложении.
+     */
+    private final ApplicationInfo applicationInfo;
+    /**
+     * Информация об устройстве.
+     */
+    private final DeviceInfo deviceInfo;
+    /**
+     * Http-клиент.
+     */
+    private final OkHttpClient baseOkHttpClient;
 
-    public static OkHttpClient build(ApiConfig apiConfig,
-                                     ApplicationInfo applicationInfo,
-                                     DeviceInfo deviceInfo) {
-        return new OkHttpClient.Builder()
+    @Inject
+    HttpClientBuilder(ApplicationInfo applicationInfo, DeviceInfo deviceInfo, OkHttpClient baseOkHttpClient) {
+        this.applicationInfo = applicationInfo;
+        this.deviceInfo = deviceInfo;
+        this.baseOkHttpClient = baseOkHttpClient;
+    }
+
+
+    public OkHttpClient build() {
+        return baseOkHttpClient.newBuilder()
                 .addInterceptor(new AppInfoOkHttpInterceptor(applicationInfo))
                 .addInterceptor(new DeviceInfoOkHttpInterceptor(deviceInfo))
                 .connectTimeout(TIMEOUT, TimeUnit.SECONDS)

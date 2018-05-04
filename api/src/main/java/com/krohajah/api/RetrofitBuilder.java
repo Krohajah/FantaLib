@@ -1,10 +1,8 @@
 package com.krohajah.api;
 
-import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.krohajah.utils.Preconditions;
-import com.krohajah.utils.android.ApplicationInfo;
-import com.krohajah.utils.android.DeviceInfo;
+
+import javax.inject.Inject;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -19,48 +17,27 @@ public class RetrofitBuilder {
     /**
      * Конфигурация API.
      */
-    private ApiConfig apiConfig;
+    private final ApiConfig apiConfig;
     /**
-     * Информация о приложении.
+     * Билдер http-клиента
      */
-    private ApplicationInfo applicationInfo;
-    /**
-     * Информация об устройстве.
-     */
-    private DeviceInfo deviceInfo;
+    private final HttpClientBuilder apiHttpClientBuilder;
 
-    public RetrofitBuilder apiConfig(ApiConfig apiConfig) {
+    @Inject
+    public RetrofitBuilder(ApiConfig apiConfig, HttpClientBuilder apiHttpClientBuilder) {
         this.apiConfig = apiConfig;
-        return this;
-    }
-
-    public RetrofitBuilder applicationInfo(ApplicationInfo applicationInfo) {
-        this.applicationInfo = applicationInfo;
-        return this;
-    }
-
-    public RetrofitBuilder deviceInfo(DeviceInfo deviceInfo) {
-        this.deviceInfo = deviceInfo;
-        return this;
+        this.apiHttpClientBuilder = apiHttpClientBuilder;
     }
 
     /**
      * Создает клиент ретрофит
      */
     public Retrofit build() {
-
-        Preconditions.checkNotNull(apiConfig);
-        Preconditions.checkNotNull(applicationInfo);
-        Preconditions.checkNotNull(deviceInfo);
-
-        OkHttpClient client = HttpClientBuilder.build(apiConfig, applicationInfo, deviceInfo);
-
-        GsonBuilder gsonBuilder = new GsonBuilder();
-
+        OkHttpClient client = apiHttpClientBuilder.build();
         return new Retrofit.Builder()
                 .baseUrl(apiConfig.getUrl())
                 .client(client)
-                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }

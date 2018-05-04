@@ -1,5 +1,7 @@
 package com.krohajah.api;
 
+import lombok.Getter;
+
 /**
  * Конфигурация API.
  *
@@ -9,23 +11,11 @@ public class ApiConfig {
     /**
      * API URL
      */
+    @Getter
     private final String url;
-    /**
-     * Ключ API.
-     * Значение для заголовка запроса "X-API-Key"
-     */
-    private final String apiKey;
 
-    public ApiConfig(String url, String apiKey) {
+
+    public ApiConfig(String url) {
         this.url = url;
-        this.apiKey = apiKey;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getApiKey() {
-        return apiKey;
     }
 }
