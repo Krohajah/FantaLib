@@ -10,11 +10,12 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * @author Maxim Berezin
  */
-class HttpClientBuilder {
+public class HttpClientBuilder {
 
     /**
      * Таймаут на подключение/чтение/запись (в секундах)
@@ -42,9 +43,12 @@ class HttpClientBuilder {
 
 
     public OkHttpClient build() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return baseOkHttpClient.newBuilder()
                 .addInterceptor(new AppInfoOkHttpInterceptor(applicationInfo))
                 .addInterceptor(new DeviceInfoOkHttpInterceptor(deviceInfo))
+                .addInterceptor(loggingInterceptor)
                 .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(TIMEOUT, TimeUnit.SECONDS)

@@ -13,10 +13,16 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            // Константы
+            buildConfigField('String', 'API_FANTLAB', '"https://api.fantlab.ru/"')
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             // Константы
-            buildConfigField('String', 'API_FANTLAB', '"https://api.fantlab.ru./"')
+            buildConfigField('String', 'API_FANTLAB', '"https://api.fantlab.ru/"')
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

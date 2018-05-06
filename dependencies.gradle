@@ -47,4 +47,11 @@ ext {
         compileOnly 'org.projectlombok:lombok:1.16.20'
         annotationProcessor 'org.projectlombok:lombok:1.16.20'
     }
+
+    // MapStruct
+    depsMapStruct = dependencyGroup {
+        compile 'org.glassfish:javax.annotation:3.1.1'
+        compile 'org.mapstruct:mapstruct:1.2.0.Final'
+        annotationProcessor 'org.mapstruct:mapstruct-processor:1.2.0.Final'
+    }
 }

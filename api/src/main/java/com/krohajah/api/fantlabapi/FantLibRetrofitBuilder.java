@@ -1,6 +1,8 @@
-package com.krohajah.api;
+package com.krohajah.api.fantlabapi;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.krohajah.api.ApiConfig;
+import com.krohajah.api.HttpClientBuilder;
 
 import javax.inject.Inject;
 
@@ -13,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  *
  * @author Maxim Berezin
  */
-public class RetrofitBuilder {
+public class FantLibRetrofitBuilder {
     /**
      * Конфигурация API.
      */
@@ -24,7 +26,7 @@ public class RetrofitBuilder {
     private final HttpClientBuilder apiHttpClientBuilder;
 
     @Inject
-    public RetrofitBuilder(ApiConfig apiConfig, HttpClientBuilder apiHttpClientBuilder) {
+    public FantLibRetrofitBuilder(ApiConfig apiConfig, HttpClientBuilder apiHttpClientBuilder) {
         this.apiConfig = apiConfig;
         this.apiHttpClientBuilder = apiHttpClientBuilder;
     }

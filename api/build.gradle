@@ -48,5 +48,6 @@ dependencies {
     implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     //бажина. Когда ставишь зависимость от переменной не работает
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+    debugImplementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
 }

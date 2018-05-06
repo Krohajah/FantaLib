@@ -1,22 +1,18 @@
-package com.krohajah.api.fantlabapi;
+package com.krohajah.fantalib.data.fantlib.source.remote;
 
 import com.krohajah.api.fantlabapi.model.Authors;
 
 import io.reactivex.Observable;
 import retrofit2.Response;
-import retrofit2.http.GET;
 
 /**
- * АПИ fantlib.
- *
  * @author Maxim Berezin
  */
-public interface FantLibApi {
+public interface FantLibApiWorker {
     /**
      * Список авторов.
      *
      * @return список авторов.
      */
-    @GET("autorsall")
     Observable<Response<Authors>> getAuthors();
 }
