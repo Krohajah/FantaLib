@@ -35,8 +35,8 @@ public class BooksPresenter extends BasePresenter<BooksView> implements BooksVie
         CompositeDisposable disposable = new CompositeDisposable();
         disposable.add(authorsRepository.getAuthors()
                 .compose(RxUtils.applyUIDefaults())
-                .subscribe(response -> {
-                    logger.trace(response.message());
+                .subscribe(authors -> {
+                    logger.trace("authors size " + authors.getAuthors().size());
                 }));
     }
 }

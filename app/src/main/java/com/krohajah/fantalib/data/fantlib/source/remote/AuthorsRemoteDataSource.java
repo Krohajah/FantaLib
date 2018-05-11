@@ -6,7 +6,6 @@ import com.krohajah.fantalib.data.fantlib.source.AuthorsDataSource;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import retrofit2.Response;
 
 /**
  * @author Maxim Berezin
@@ -21,7 +20,8 @@ public class AuthorsRemoteDataSource implements AuthorsDataSource {
     }
 
     @Override
-    public Observable<Response<Authors>> getAuthors() {
-        return apiWorker.getAuthors();
+    public Observable<Authors> getAuthors() {
+        return apiWorker.getAuthors()
+                .flatMap(authorsResponse -> Observable.just(authorsResponse.getData()));
     }
 }

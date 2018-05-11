@@ -8,7 +8,6 @@ import com.krohajah.fantalib.data.fantlib.source.AuthorsDataSource;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
-import retrofit2.Response;
 
 /**
  * Репозиторий авторов.
@@ -27,8 +26,8 @@ public class AuthorsRepository extends BaseRepository implements AuthorsDataSour
     }
 
     @Override
-    public Observable<Response<Authors>> getAuthors() {
-        Observable<Response<Authors>> authorsObservable = authorsRemoteDataSource.getAuthors();
+    public Observable<Authors> getAuthors() {
+        Observable<Authors> authorsObservable = authorsRemoteDataSource.getAuthors();
         return cacheObservable(CAHCE_AUTHORS_OBSERVABLE, authorsObservable);
     }
 }
