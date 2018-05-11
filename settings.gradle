@@ -1,1 +1,1 @@
-include ':app', ':logger', ':api', ':utils'
+include ':app', ':logger', ':api', ':utils', ':localdb'
