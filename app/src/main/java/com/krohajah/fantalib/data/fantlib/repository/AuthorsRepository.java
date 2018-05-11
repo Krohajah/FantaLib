@@ -1,6 +1,7 @@
 package com.krohajah.fantalib.data.fantlib.repository;
 
 import com.krohajah.api.fantlabapi.model.Authors;
+import com.krohajah.fantalib.data.BaseRepository;
 import com.krohajah.fantalib.data.Remote;
 import com.krohajah.fantalib.data.fantlib.source.AuthorsDataSource;
 
@@ -14,7 +15,9 @@ import retrofit2.Response;
  *
  * @author Maxim Berezin
  */
-public class AuthorsRepository implements AuthorsDataSource {
+public class AuthorsRepository extends BaseRepository implements AuthorsDataSource {
+
+    private static final String CAHCE_AUTHORS_OBSERVABLE = "CAHCE_AUTHORS_OBSERVABLE";
 
     private final AuthorsDataSource authorsRemoteDataSource;
 
@@ -25,6 +28,7 @@ public class AuthorsRepository implements AuthorsDataSource {
 
     @Override
     public Observable<Response<Authors>> getAuthors() {
-        return authorsRemoteDataSource.getAuthors();
+        Observable<Response<Authors>> authorsObservable = authorsRemoteDataSource.getAuthors();
+        return cacheObservable(CAHCE_AUTHORS_OBSERVABLE, authorsObservable);
     }
 }
